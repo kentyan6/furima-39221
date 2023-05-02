@@ -9,8 +9,8 @@
 | password           | string              | null: false               |
 | encrypted_password | string              | null: false               |
 | name               | string              | null: false               |
-| encrypted_name     | string              | null: false               |
-| birthday           | pulldown            | null: false               |
+| name_kana          | string              | null: false               |
+| birthday           | text                | null: false               |
 
 ### Association
 
@@ -21,39 +21,51 @@
 
 | Column                              | Type       | Options                        |
 |-------------------------------------|------------|--------------------------------|
-| image                               | string     | null: false                    |
-| title                               | string     | null: false                    |
-| catch_copy                          | text       | null: false                    |
-| concept                             | text       | null: false                    |
+| image                               | text       | null: false                    |
+| goods_name                          | string     | null: false                    |
+| content                             | text       | null: false                    |
+| category                            | text       | null: false                    |
+| condition                           | text       | null: false                    |
+| delivery_price                      | text       | null: false                    |
+| delivery_area                       | text       | null: false                    |
+| delivery_date                       | text       | null: false                    |
+| price                               | string     | null: false                    |
 | user                                | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_many :comments
+- has_one :buy
 
 ## buys table
 
-| Column      | Type       | Options                        |
-|-------------|------------|--------------------------------|
-| content     | text       | null: false                    |
-| prototype   | references | null: false, foreign_key: true |
-| user        | references | null: false, foreign_key: true |
+| Column          | Type       | Options                        |
+|-----------------|------------|--------------------------------|
+| card_number     | string     | null: false                    |
+| limit_date      | string     | null: false                    |
+| security_code   | string     | null: false                    |
+| item            | references | null: false, foreign_key: true |
+| user            | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :prototype
+- belongs_to :item
 - belongs_to :user
+- has_one :buyer information
 
-## buy information table
+## buyer informations table
 
-| Column      | Type       | Options                        |
-|-------------|------------|--------------------------------|
-| content     | text       | null: false                    |
-| prototype   | references | null: false, foreign_key: true |
-| user        | references | null: false, foreign_key: true |
+| Column           | Type       | Options                        |
+|------------------|------------|--------------------------------|
+| post_code        | string     | null: false                    |
+| prefectures      | string     | null: false                    |
+| area             | string     | null: false                    |
+| address          | string     | null: false                    |
+| building         | string     | nil                            |
+| telephone_number | string     | null: false                    |
+| buy              | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :prototype
-- belongs_to :user
+- belongs_to :buy
+
