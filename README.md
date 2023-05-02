@@ -11,7 +11,7 @@
 | last_name          | string              | null: false               |
 | family_kana        | string              | null: false               |
 | last_kana          | string              | null: false               |
-| birthday           | date                | null: false               |
+| birthday_id        | date                | null: false               |
 
 ### Association
 
@@ -22,13 +22,13 @@
 
 | Column                              | Type       | Options                        |
 |-------------------------------------|------------|--------------------------------|
-| goods_name_id                       | integer    | null: false                    |
-| content_id                          | integer    | null: false                    |
+| goods_name                          | string     | null: false                    |
+| content                             | text       | null: false                    |
 | category_id                         | integer    | null: false                    |
-| condition                           | text       | null: false                    |
-| delivery_price                      | text       | null: false                    |
-| prefecture_id                       | text       | null: false                    |
-| delivery_date                       | text       | null: false                    |
+| condition_id                        | integer    | null: false                    |
+| delivery_price_id                   | integer    | null: false                    |
+| prefecture_id                       | integer    | null: false                    |
+| delivery_date_id                    | integer    | null: false                    |
 | price                               | integer    | null: false                    |
 | user                                | references | null: false, foreign_key: true |
 
@@ -48,17 +48,17 @@
 
 - belongs_to :item
 - belongs_to :user
-- has_one :buyer information
+- has_one :buyer_information
 
-## buyer informations table
+## buyer_informations table
 
 | Column           | Type       | Options                        |
 |------------------|------------|--------------------------------|
-| post_code        | integer    | null: false                    |
+| post_code        | string     | null: false                    |
 | prefecture_id    | integer    | null: false                    |
 | area             | string     | null: false                    |
 | address          | string     | null: false                    |
-| building         | string     | nil                            |
+| building         | string     |                                |
 | telephone_number | string     | null: false                    |
 | buy              | references | null: false, foreign_key: true |
 
