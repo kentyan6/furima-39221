@@ -37,6 +37,8 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_hash (3.1.1)
+      activesupport (>= 5.0.0)
     activejob (6.0.6.1)
       activesupport (= 6.0.6.1)
       globalid (>= 0.3.6)
@@ -103,7 +105,6 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
-    mini_portile2 (2.8.2)
     minitest (5.18.0)
     msgpack (1.7.0)
     mysql2 (0.5.5)
@@ -117,10 +118,7 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
-    nokogiri (1.13.10)
-      mini_portile2 (~> 2.8.0)
-      racc (~> 1.4)
-    nokogiri (1.13.10-x86_64-linux)
+    nokogiri (1.13.10-x86_64-darwin)
       racc (~> 1.4)
     parallel (1.23.0)
     parser (3.2.2.1)
@@ -240,9 +238,9 @@ GEM
 
 PLATFORMS
   ruby
-  x86_64-linux
 
 DEPENDENCIES
+  active_hash
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
