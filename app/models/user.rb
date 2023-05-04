@@ -11,6 +11,6 @@ class User < ApplicationRecord
   validates :last_kana, presence: true, format: { with: /\A[ァ-ヶ]+\z/ }
   validates :birthday, presence: true
 
-  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
-  validates :password, confirmation: true, length: { minimum: 6 }, format: { with: VALID_PASSWORD_REGEX }
+  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i
+  validates :password, presence: true, length: { minimum: 6 }, format: { with: PASSWORD_REGEX }
 end
