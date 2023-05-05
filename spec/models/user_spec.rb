@@ -27,6 +27,11 @@ RSpec.describe User, type: :model do
       end
     end
     context '新規登録できない場合' do
+      it "nicknameが空では登録できない" do
+        @user.nickname = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Nickname can't be blank")
+      end
       it "family_nameが空では登録できない" do
         @user.family_name = ''
         @user.valid?
@@ -46,6 +51,56 @@ RSpec.describe User, type: :model do
         @user.last_kana = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Last kana can't be blank")
+      end
+      it '姓（全角）に半角文字が含まれていると登録できない' do
+        @user.family_name = '中ﾊﾗ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Family name is invalid')
+      end      
+      it '名（全角）に半角文字が含まれていると登録できない' do
+        @user.last_name = 'まつﾗ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Last name is invalid')
+      end      
+      it '姓（カナ）に平仮名が含まれていると登録できない' do
+        @user.family_kana = 'まル'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Family kana is invalid')
+      end
+      it '名（カナ）に平仮名が含まれていると登録できない' do
+        @user.last_kana = 'ミつ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Last kana is invalid')
+      end
+      it '姓（カナ）に漢字が含まれていると登録できない' do
+        @user.family_kana = '川ル'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Family kana is invalid')
+      end
+      it '名（カナ）に漢字が含まれていると登録できない' do
+        @user.last_kana = 'ミ歩'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Last kana is invalid')
+      end
+      it '姓（カナ）に英数字が含まれていると登録できない' do
+        @user.family_kana = '2ル'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Family kana is invalid')
+      end
+      it '名（カナ）に英数字が含まれていると登録できない' do
+        @user.last_kana = 'ミ6'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Last kana is invalid')
+      end
+      it '姓（カナ）に記号が含まれていると登録できない' do
+        @user.family_kana = '^ル'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Family kana is invalid')
+      end
+      it '名（カナ）に記号が含まれていると登録できない' do
+        @user.last_kana = 'ミ@'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Last kana is invalid')
       end
       it "emailが空では登録できない" do
         @user.email = ''
