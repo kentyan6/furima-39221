@@ -1,6 +1,6 @@
 class OrderInformation
   include ActiveModel::Model
-  attr_accessor :item_id, :user_id, :postal_code, :prefecture_id, :city, :house_number, :building_name, :telephone_number
+  attr_accessor :item_id, :user_id, :postal_code, :prefecture_id, :city, :house_number, :building_name, :telephone_number, :token, :order_id
 
   with_options presence: true do
     validates :item_id
@@ -10,6 +10,7 @@ class OrderInformation
     validates :house_number
     validates :prefecture_id, numericality: {other_than: 1, message: "can't be blank"}
     validates :telephone_number, format: {with: /\A[0-9]{11}\z/ }
+    validates :token
   end
 
   def save

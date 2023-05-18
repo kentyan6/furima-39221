@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe OrderInformation, type: :model do
-  describe do
+  describe '購入情報の保存' do
     before do
-      @order_information = FactoryBot.build(:order_information)
+      order = FactoryBot.create(:order)
+      @order_information = FactoryBot.build(:order_information, order_id: order.id)
     end
-end
 
 context '内容に問題ない場合' do
   it 'すべての値が正しく入力されていれば保存できること' do
@@ -63,5 +63,6 @@ context '内容に問題がある場合' do
     @order_information.valid?
     expect(@order_information.errors.full_messages).to include("User can't be blank")
   end
+end
 end
 end
