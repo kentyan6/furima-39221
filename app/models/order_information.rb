@@ -1,6 +1,6 @@
 class OrderInformation
   include ActiveModel::Model
-  attr_accessor :item_id, :user_id, :postal_code, :prefecture_id, :city, :house_number, :building_name, :telephone_number, :token, :order_id
+  attr_accessor :item_id, :user_id, :postal_code, :prefecture_id, :city, :house_number, :building_name, :telephone_number, :token
 
   with_options presence: true do
     validates :item_id

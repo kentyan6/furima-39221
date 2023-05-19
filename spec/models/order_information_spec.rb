@@ -17,9 +17,6 @@ context '内容に問題ない場合' do
     @order_information.building_name = ''
     expect(@order_information).to be_valid
   end
-  it "tokenがあれば保存ができること" do
-    expect(@order_information).to be_valid
-  end
 end
 
 context '内容に問題がある場合' do

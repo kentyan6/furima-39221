@@ -25,7 +25,7 @@ end
 private
 
 def order_params
-  params.require(:order_information).permit(:postal_code, :prefecture_id, :city, :house_number, :building_name, :telephone_number, :user_id, :item_id ).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
+  params.require(:order_information).permit(:postal_code, :prefecture_id, :city, :house_number, :building_name, :telephone_number ).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
 end
 
 def pay_item
@@ -50,5 +50,5 @@ def buy_url
 end
 
 def move_index
-  @item = Item.find(params[:id])
+  @item = Item.find(params[:item_id])
 end
