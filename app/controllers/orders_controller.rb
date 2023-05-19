@@ -2,17 +2,13 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!, except: [:create]
   before_action :prevents_url, only: [:index, :create]
   before_action :buy_url, only: [:index, :create]
+  before_action :move_index, only: [:index, :create, :prevents_url, :buy_url]
 
   def index
-    @item = Item.find(params[:item_id])
     @order_information = OrderInformation.new
-    if current_user == @item.user
-      redirect_to root_path
-    end
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order_information = OrderInformation.new(order_params)
     if @order_information.valid?
       pay_item
@@ -42,15 +38,17 @@ def pay_item
 end
 
 def prevents_url
-  @item = Item.find(params[:item_id])
   if @item.user_id == current_user.id
     redirect_to root_path
   end
 end
 
 def buy_url
-  @item = Item.find(params[:item_id])
-  if @item.user_id != current_user.id && @item.order != nil
+  if @item.order != nil
     redirect_to root_path
   end
+end
+
+def move_index
+  @item = Item.find(params[:id])
 end
