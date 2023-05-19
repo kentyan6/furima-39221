@@ -1,8 +1,8 @@
 class OrdersController < ApplicationController
+  before_action :move_index, only: [:index, :create]
   before_action :authenticate_user!, except: [:create]
   before_action :prevents_url, only: [:index, :create]
   before_action :buy_url, only: [:index, :create]
-  before_action :move_index, only: [:index, :create, :prevents_url, :buy_url]
 
   def index
     @order_information = OrderInformation.new
