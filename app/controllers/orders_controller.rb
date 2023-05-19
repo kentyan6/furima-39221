@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, except: [:create]
-  before_action :prevent_url, only: [:index, :create] 
+  before_action :prevents_url, only: [:create]
 
   def index
     @item = Item.find(params[:item_id])
@@ -32,7 +32,7 @@ def order_params
 end
 
 def pay_item
-  Payjp.api_key = "sk_test_cb686a59fcf4606374a1d1a8"
+  Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
   Payjp::Charge.create(
     amount: @item.price,
     card: order_params[:token],
@@ -40,7 +40,7 @@ def pay_item
   )
 end
 
-def prevent_url
+def prevents_url
   @item = Item.find(params[:item_id])
   if @item.user_id != current_user.id
     redirect_to root_path
