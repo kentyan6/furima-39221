@@ -65,3 +65,5 @@ end
 gem 'active_hash'
 gem 'devise'
 gem 'net-http'
+gem 'payjp'
+gem 'pry-rails'
