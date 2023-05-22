@@ -29,27 +29,27 @@ RSpec.describe Item, type: :model do
       it 'categoryが未選択だと出品できない' do
         @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category can't be blank")
+        expect(@item.errors.full_messages).to include("Category を選択してください")
       end
       it 'conditionが未選択だと出品できない' do
         @item.condition_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Condition can't be blank")
+        expect(@item.errors.full_messages).to include("Condition を選択してください")
       end
       it 'delivery_priceが未選択だと出品できない' do
         @item.delivery_price_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery price can't be blank")
+        expect(@item.errors.full_messages).to include("Delivery price を選択してください")
       end
       it 'prefectureが未選択だと出品できない' do
         @item.prefecture_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@item.errors.full_messages).to include("Prefecture を選択してください")
       end
       it 'delivery_dateが未選択だと出品できない' do
         @item.delivery_date_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery date can't be blank")
+        expect(@item.errors.full_messages).to include("Delivery date を選択してください")
       end
       it 'priceが空だと出品できない' do
         @item.price = nil

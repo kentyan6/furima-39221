@@ -28,12 +28,12 @@ context '内容に問題がある場合' do
   it 'postal_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
     @order_information.postal_code = '1234567'
     @order_information.valid?
-    expect(@order_information.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
+    expect(@order_information.errors.full_messages).to include('Postal code はハイフンなしで入力してください')
   end
   it 'prefectureを選択していないと保存できないこと' do
     @order_information.prefecture_id = 1
     @order_information.valid?
-    expect(@order_information.errors.full_messages).to include("Prefecture can't be blank")
+    expect(@order_information.errors.full_messages).to include("Prefecture を選択してください")
   end
   it 'cityが空だと保存できないこと' do
     @order_information.city = nil
